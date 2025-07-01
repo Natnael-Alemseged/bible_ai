@@ -24,6 +24,7 @@ class Assets {
   static const AssetGenImage paul = AssetGenImage('assets/Paul.png');
   static const AssetGenImage abraham = AssetGenImage('assets/abraham.png');
   static const AssetGenImage apple = AssetGenImage('assets/apple.png');
+  static const AssetGenImage bell = AssetGenImage('assets/bell.gif');
   static const AssetGenImage bible = AssetGenImage('assets/bible.png');
   static const AssetGenImage bibleMinimal =
       AssetGenImage('assets/bible_minimal.png');
@@ -34,6 +35,7 @@ class Assets {
   static const AssetGenImage congratulations =
       AssetGenImage('assets/congratulations.png');
   static const AssetGenImage google = AssetGenImage('assets/google.png');
+  static const AssetGenImage leaf = AssetGenImage('assets/leaf.png');
   static const AssetGenImage notification =
       AssetGenImage('assets/notification.png');
   static const AssetGenImage paywallBackground =
@@ -53,12 +55,14 @@ class Assets {
         paul,
         abraham,
         apple,
+        bell,
         bible,
         bibleMinimal,
         bibleRipple,
         bibleWhite,
         congratulations,
         google,
+        leaf,
         notification,
         paywallBackground,
         profile,

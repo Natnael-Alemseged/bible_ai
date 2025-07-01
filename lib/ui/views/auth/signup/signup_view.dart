@@ -14,10 +14,10 @@ class SignupView extends StackedView<SignupViewModel> {
 
   @override
   Widget builder(
-      BuildContext context,
-      SignupViewModel viewModel,
-      Widget? child,
-      ) {
+    BuildContext context,
+    SignupViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -177,11 +177,11 @@ class SignupView extends StackedView<SignupViewModel> {
 
   // 🔥 Password Validation Item Widget
   Widget _buildValidationItem(
-      String text,
-      int current, {
-        int target = 1,
-        bool isLengthValidation = false,
-      }) {
+    String text,
+    int current, {
+    int target = 1,
+    bool isLengthValidation = false,
+  }) {
     Color getColor() {
       if (current == 0) return Colors.grey;
       if (isLengthValidation) {
@@ -232,6 +232,5 @@ class SignupView extends StackedView<SignupViewModel> {
   }
 
   @override
-  SignupViewModel viewModelBuilder(BuildContext context) =>
-      SignupViewModel();
+  SignupViewModel viewModelBuilder(BuildContext context) => SignupViewModel();
 }

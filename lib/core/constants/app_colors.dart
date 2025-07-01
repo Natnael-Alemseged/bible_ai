@@ -24,8 +24,10 @@ const Color darkPurple = Color.fromARGB(
   50,
 ); // Dark purple background
 const Color primaryColorDark = Color(0xFF300151);
-const Color darkGreyColor = Color(0xFF121212); // Very dark grey (general background)
-const Color textGreyColor = Color(0xFFA6A6A6); // Very dark grey (general background)
+const Color darkGreyColor =
+    Color(0xFF121212); // Very dark grey (general background)
+const Color textGreyColor =
+    Color(0xFFA6A6A6); // Very dark grey (general background)
 const Color mediumGrey = Color(0xFF232323); // Medium grey for cards
 const Color lightGrey = Color(0xFF707070); // Light grey for text
 const Color veryLightGrey = Color(0xFFD9D9D9); // For borders or inactive states

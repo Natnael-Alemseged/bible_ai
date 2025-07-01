@@ -1,5 +1,6 @@
 import 'package:bible_ai/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:bible_ai/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:bible_ai/ui/views/congratulations/congratulations_view.dart';
 
 import 'package:bible_ai/ui/views/home/home_view.dart';
 import 'package:bible_ai/ui/views/startup/startup_view.dart';
@@ -12,6 +13,8 @@ import 'package:bible_ai/ui/views/auth/forgot_password/forgot_password_view.dart
 import 'package:bible_ai/ui/views/auth/signup/signup_view.dart';
 import 'package:bible_ai/ui/views/onboarding/onboarding_view.dart';
 import 'package:bible_ai/ui/views/otp/otp_view.dart';
+
+import 'package:bible_ai/ui/views/enable_notification/enable_notification_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -26,6 +29,9 @@ import 'package:bible_ai/ui/views/otp/otp_view.dart';
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: SignupView),
     MaterialRoute(page: ForgotPasswordView),
+    MaterialRoute(page: OtpView),
+    MaterialRoute(page: CongratulationsView),
+    MaterialRoute(page: EnableNotificationView),
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),

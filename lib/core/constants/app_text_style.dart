@@ -11,6 +11,12 @@ class AppTextStyle {
     fontWeight: FontWeight.bold,
     color: blackColor,
   );
+  static const TextStyle big30 = TextStyle(
+    fontFamily: 'Montserrat',
+    fontSize: 30,
+    fontWeight: FontWeight.bold,
+    color: blackColor,
+  );
   static const TextStyle bigPlus = TextStyle(
     fontFamily: 'Montserrat',
     fontSize: 26,

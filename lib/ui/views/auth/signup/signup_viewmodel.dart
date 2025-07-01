@@ -9,7 +9,7 @@ class SignupViewModel extends BaseViewModel {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final _NavigationService=locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
   bool isTermsAccepted = false;
   bool isBusy = false;
@@ -28,10 +28,10 @@ class SignupViewModel extends BaseViewModel {
   }
 
   void register() {
-    if (!isTermsAccepted) {
-      // TODO: Show error (terms not accepted)
-      return;
-    }
+    // if (!isTermsAccepted) {
+    //   // TODO: Show error (terms not accepted)
+    //   return;
+    // }
 
     isBusy = true;
     notifyListeners();
@@ -40,19 +40,12 @@ class SignupViewModel extends BaseViewModel {
       isBusy = false;
       notifyListeners();
       // TODO: Implement registration logic
+      _navigationService.navigateToOtpView();
     });
   }
 
   void toLoginScreen() {
-    _NavigationService.navigateToLoginView();
-  }
-
-  void onGoogleSignUp() {
-    // TODO: Implement Google signup
-  }
-
-  void onAppleSignUp() {
-    // TODO: Implement Apple signup
+    _navigationService.navigateToLoginView();
   }
 
   void openTermsAndDataPolicy() {
@@ -62,10 +55,10 @@ class SignupViewModel extends BaseViewModel {
   @override
   void dispose() {
     passwordController.removeListener(_onPasswordChanged);
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
+    // nameController.dispose();
+    // emailController.dispose();
+    // passwordController.dispose();
+    // confirmPasswordController.dispose();
     super.dispose();
   }
 }
