@@ -1,4 +1,5 @@
 import 'package:bible_ai/core/constants/app_colors.dart';
+import 'package:bible_ai/core/constants/app_text_style.dart';
 import 'package:bible_ai/core/constants/ui_helpers.dart';
 import 'package:bible_ai/core/widgets/app_button.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,6 @@ class HomeView extends StackedView<HomeViewModel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpaceMiddle,
-              // 🔥 Search Bar
-              _buildSearchBar(),
 
               verticalSpaceMedium,
 
@@ -43,17 +42,17 @@ class HomeView extends StackedView<HomeViewModel> {
               verticalSpaceMedium,
 
               // 🔥 Character Avatars
-              _buildCharacterAvatars(),
+              _buildCharacterAvatars(viewModel),
 
               verticalSpaceMedium,
 
               // 🔥 Bible Verse Section
-              _buildBibleVerseSection(),
+              _buildBibleVerseSection(viewModel,context),
 
-              verticalSpaceMedium,
+              const Spacer(),
 
               // 🔥 User Input Section
-              _buildUserInputSection(),
+              _buildUserInputSection(viewModel),
 
               verticalSpaceMedium,
 
@@ -62,6 +61,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 text: 'Ask Bible AI',
                 onPressed: viewModel.askBibleAi,
               ),
+              verticalSpaceMedium,
             ],
           ),
         ),
@@ -75,60 +75,32 @@ class HomeView extends StackedView<HomeViewModel> {
 
 // 🔥 Helper Methods
 
-/// Builds the search bar at the top
-Widget _buildSearchBar() {
-  return Row(
-    children: [
-      Expanded(
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: 'Search Bible Verses, Chapters, Quotes',
-            hintStyle: const TextStyle(color: Colors.grey),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide.none,
-            ),
-            filled: true,
-            fillColor: Colors.grey[200],
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          ),
-        ),
-      ),
-      const SizedBox(width: 8),
-      const Icon(Icons.search, color: Colors.grey),
-    ],
-  );
-}
-
 /// Builds the character avatars section
-Widget _buildCharacterAvatars() {
-  final characters = [
-    {'name': 'Moses', 'image': Assets.moses.path},
-    {'name': 'David', 'image': Assets.david.path},
-    {'name': 'Paul', 'image': Assets.paul.path},
-  ];
-
+Widget _buildCharacterAvatars(HomeViewModel viewModel) {
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     child: Row(
-      children: characters.map((char) {
+      children: viewModel.characters.map((char) {
         return Container(
           margin: const EdgeInsets.only(right: 16),
           child: Column(
             children: [
               CircleAvatar(
-                radius: 32,
-                backgroundImage: AssetImage(char['image']!),
+                radius: 50, // This controls the size of the circle itself
+                child: ClipOval( // Ensures the image is clipped to a circle
+                  child: Image.asset(
+                    char['image']!,
+                    width: 100, // Desired width
+                    height: 100, // Desired height
+                    fit: BoxFit.cover, // Ensures the image covers the area, potentially cropping
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 char['name']!,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: blackColor,
-                ),
+                style:AppTextStyle.h4Normal,
+
               ),
             ],
           ),
@@ -138,27 +110,30 @@ Widget _buildCharacterAvatars() {
   );
 }
 
+
 /// Builds the Bible verse section
-Widget _buildBibleVerseSection() {
+Widget _buildBibleVerseSection(HomeViewModel viewModel, BuildContext context) {
   return Card(
     elevation: 4,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    child: Padding(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    child: Container(
+      color: const Color(0xFFFFFAEC),
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          // 🔥 Header
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Chip(
-                label: Text('Daily verse'),
-                backgroundColor: Colors.amber,
+              const Chip(
+                label: Text('Daily verse',style: AppTextStyle.h4Normal,),
+                backgroundColor: Color(0xFFFFF0C3),
                 labelStyle: TextStyle(color: Colors.white),
               ),
               Text(
-                'Proverbs 3:5-6',
-                style: TextStyle(
+                viewModel.verseReference,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: blackColor,
@@ -166,36 +141,59 @@ Widget _buildBibleVerseSection() {
               ),
             ],
           ),
+
           verticalSpaceSmall,
-          const Text(
-            'Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to Him, and He will make your paths straight.',
-            style: TextStyle(
-              fontSize: 16,
-              color: darkGreyColor,
-            ),
+
+          // 🔥 Verse Text
+          Text(
+            viewModel.dailyVerse,
+            style: const TextStyle(fontSize: 16, color: darkGreyColor),
           ),
+
           verticalSpaceSmall,
+
+          // 🔥 Action Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                icon: const Icon(Icons.share, color: Colors.amber),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.favorite_border, color: Colors.amber),
-                onPressed: () {},
+              Row(
+                children: [
+                  IconButton(
+                    color: const Color(0xFFFFF0C3),
+                    icon: const Icon(Icons.share,
+
+                      color:blackColor ),
+                    onPressed: viewModel.onShareVerse,
+                    tooltip: 'Share verse',
+                  ),
+                  IconButton(
+                    color:  const Color(0xFFFFF0C3),
+                    icon: Icon(
+                      viewModel.isVerseFavorited
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: blackColor,
+                    ),
+                    onPressed: viewModel.toggleFavorite,
+                    tooltip: 'Favorite verse',
+                  ),
+                ],
               ),
               ElevatedButton(
+                onPressed: () => viewModel.readFullChapter(context),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
-                  backgroundColor: Colors.amber,
+                   backgroundColor: const Color(0xFFFFF0C3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
-                onPressed: () {},
-                child: const Text('Read full chapter'),
+                child: const Text(
+                  'Read full chapter',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
               ),
             ],
           ),
@@ -205,13 +203,15 @@ Widget _buildBibleVerseSection() {
   );
 }
 
+
+
 /// Builds the user input section
-Widget _buildUserInputSection() {
+Widget _buildUserInputSection(HomeViewModel viewModel) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       const Text(
-        'Ask Bible AI about anything',
+        'Ask Bible Ai about anything',
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
@@ -219,41 +219,45 @@ Widget _buildUserInputSection() {
         ),
       ),
       verticalSpaceSmall,
-      Row(
-        children: [
-          const Icon(Icons.chat_bubble_outline, color: Colors.grey),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              'What does Jesus say about love?',
-              style: const TextStyle(
-                fontSize: 14,
-                color: darkGreyColor,
+      SizedBox(
+        height: 46, // ensures proportion like the screenshot
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemCount: viewModel.suggestedQuestions.length,
+          separatorBuilder: (_, __) => const SizedBox(width: 8),
+          itemBuilder: (context, index) {
+            final question = viewModel.suggestedQuestions[index];
+            return InkWell(
+              onTap: () => viewModel.askSuggestedQuestion(question),
+              child: Container(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.chat_bubble_outline,
+                        color: Colors.grey, size: 18),
+                    const SizedBox(width: 6),
+                    Text(
+                      question,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: darkGreyColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          const Icon(Icons.add_circle, color: Colors.amber),
-        ],
-      ),
-      const Divider(color: Colors.grey),
-      Row(
-        children: [
-          const Icon(Icons.chat_bubble_outline, color: Colors.grey),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              'How...',
-              style: const TextStyle(
-                fontSize: 14,
-                color: darkGreyColor,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          const Icon(Icons.add_circle, color: Colors.amber),
-        ],
+            );
+          },
+        ),
       ),
     ],
   );
 }
+
+

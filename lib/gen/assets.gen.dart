@@ -45,6 +45,7 @@ class Assets {
   static const AssetGenImage google = AssetGenImage('assets/google.png');
   static const SvgGenImage home = SvgGenImage('assets/home.svg');
   static const AssetGenImage leaf = AssetGenImage('assets/leaf.png');
+  static const AssetGenImage message = AssetGenImage('assets/message.png');
   static const AssetGenImage mobile = AssetGenImage('assets/mobile.png');
   static const AssetGenImage notification =
       AssetGenImage('assets/notification.png');
@@ -78,6 +79,7 @@ class Assets {
         google,
         home,
         leaf,
+        message,
         mobile,
         notification,
         paywallBackground,
