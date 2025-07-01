@@ -31,6 +31,7 @@ const Widget verticalSpaceSmall = SizedBox(height: smallSize);
 const Widget verticalSpaceMiddle = SizedBox(height: middleSize);
 const Widget verticalSpaceMedium = SizedBox(height: mediumSize);
 const Widget verticalSpaceLarge = SizedBox(height: largeSize);
+const Widget verticalSpaceLargeLarge = SizedBox(height: largeLargeSize);
 const Widget verticalSpaceMassive = SizedBox(height: massiveSize);
 
 const TextStyle errorTextBoxMessage = TextStyle(

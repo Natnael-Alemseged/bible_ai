@@ -2,12 +2,22 @@ import 'package:bible_ai/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:bible_ai/app/app.locator.dart';
+import 'package:flutter/material.dart';
 
 class LoginViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   String _email = '';
   String _password = '';
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  login() {}
+
+  toSignupScreen() {
+    _navigationService.navigateToSignupView();
+  }
 
   void setEmail(String email) {
     _email = email;

@@ -10,14 +10,13 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
   const OnboardingView({super.key});
 
   @override
-  Widget builder(BuildContext context,
-      OnboardingViewModel viewModel,
-      Widget? child,) {
+  Widget builder(
+    BuildContext context,
+    OnboardingViewModel viewModel,
+    Widget? child,
+  ) {
     final current = viewModel.currentPage;
-    final screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -46,7 +45,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                           shape: BoxShape.circle,
                           border: Border.all(
                             color:
-                            isSelected ? primaryColor : Colors.transparent,
+                                isSelected ? primaryColor : Colors.transparent,
                             width: 3,
                           ),
                         ),
@@ -54,7 +53,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                           radius: isCenter ? 40 : 25, // Center one is larger
                           backgroundColor: whiteColor,
                           backgroundImage:
-                          AssetImage(viewModel.characters[index]['image']),
+                              AssetImage(viewModel.characters[index]['image']),
                         ),
                       ),
                     );
@@ -62,7 +61,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
               )
             else
-            // 🔥 Icon with Ripple or Not
+              // 🔥 Icon with Ripple or Not
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 500),
                 transitionBuilder: (child, animation) =>
@@ -82,7 +81,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   ],
                 ),
               ),
-
 
             SizedBox(height: current['showCharacters'] == true ? 32 : 0),
 
@@ -120,10 +118,10 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
             const Spacer(),
             viewModel.currentIndex == 3
                 ? TextButton(
-                onPressed: () {},
-                child: const Text(
-                    "Continue without an Account", style: AppTextStyle.h3Normal))
-                    : const SizedBox(),
+                    onPressed: () {},
+                    child: const Text("Continue without an Account",
+                        style: AppTextStyle.h3Normal))
+                : const SizedBox(),
 
             // 🔥 Continue Button
             Padding(

@@ -11,6 +11,7 @@ import 'package:bible_ai/ui/views/auth/forgot_password/forgot_password_view.dart
 
 import 'package:bible_ai/ui/views/auth/signup/signup_view.dart';
 import 'package:bible_ai/ui/views/onboarding/onboarding_view.dart';
+import 'package:bible_ai/ui/views/otp/otp_view.dart';
 // @stacked-import
 
 @StackedApp(

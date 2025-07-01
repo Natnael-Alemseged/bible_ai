@@ -16,23 +16,23 @@ class OnboardingViewModel extends BaseViewModel {
   final List<Map<String, dynamic>> characters = [
     {
       'name': 'Paul',
-      'image': Assets.paul,
+      'image': Assets.paul.path,
     },
     {
       'name': 'Mary',
-      'image': Assets.mary,
+      'image': Assets.mary.path,
     },
     {
       'name': 'Abraham',
-      'image': Assets.abraham,
+      'image': Assets.abraham.path,
     },
     {
       'name': 'Jordan Peterson',
-      'image': Assets.jordanPeterson,
+      'image': Assets.jordanPeterson.path,
     },
     {
       'name': 'C.S Lewis',
-      'image': Assets.cSLewis,
+      'image': Assets.cSLewis.path,
     },
   ];
 
@@ -47,7 +47,7 @@ class OnboardingViewModel extends BaseViewModel {
   final List<Map<String, dynamic>> _pages = [
     {
       'icon': Icons.menu_book_outlined,
-      'image':Assets.bibleRipple.path,
+      'image': Assets.bibleRipple.path,
       'title': "Welcome to Bible AI",
       'subtitle': "Find quick bible answers\nto questions to life questions",
       'button_text': 'Get Started',
@@ -57,7 +57,7 @@ class OnboardingViewModel extends BaseViewModel {
       'iconSize': 50.0,
     },
     {
-      'image':Assets.bibleMinimal.path,
+      'image': Assets.bibleMinimal.path,
       'title': "Ask anything and get biblical answers",
       'subtitle': "Find quick bible answers\nto questions to life questions",
       'button_text': 'Continue',
@@ -74,7 +74,7 @@ class OnboardingViewModel extends BaseViewModel {
     },
     {
       'icon': Icons.menu_book_outlined,
-      'image':Assets.bibleRipple.path,
+      'image': Assets.bibleRipple.path,
       'title': "Ask anything and get biblical answers",
       'subtitle': "Find quick bible answers to\nquestions to life questions",
       'button_text': 'Create an account',

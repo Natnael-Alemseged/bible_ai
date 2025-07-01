@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // Color constants
 
-const Color primaryColor = Color(0xFFF8B621);
+const Color primaryColor = Color(0xFFFFBF00);
 const Color secondary = Color(0xFF212121); // Dark
 const Color accent = Color(0xFF757575); // Grey
 const Color primaryColorLight = Color(0xFF0A0633);
@@ -24,9 +24,8 @@ const Color darkPurple = Color.fromARGB(
   50,
 ); // Dark purple background
 const Color primaryColorDark = Color(0xFF300151);
-const Color darkGreyColor = Color(
-  0xFF121212,
-); // Very dark grey (general background)
+const Color darkGreyColor = Color(0xFF121212); // Very dark grey (general background)
+const Color textGreyColor = Color(0xFFA6A6A6); // Very dark grey (general background)
 const Color mediumGrey = Color(0xFF232323); // Medium grey for cards
 const Color lightGrey = Color(0xFF707070); // Light grey for text
 const Color veryLightGrey = Color(0xFFD9D9D9); // For borders or inactive states
