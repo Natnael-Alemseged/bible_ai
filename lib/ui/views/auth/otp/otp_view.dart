@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_button.dart';
+
+import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/constants/ui_helpers.dart';
 import 'otp_viewmodel.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/ui_helpers.dart';
 
 class OtpView extends StackedView<OtpViewModel> {
   const OtpView({Key? key}) : super(key: key);

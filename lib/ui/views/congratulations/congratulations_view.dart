@@ -46,8 +46,6 @@ class CongratulationsView extends StackedView<CongratulationsViewModel> {
                     'your account is complete, please enjoy the best menu from us.',
                     style: AppTextStyle.h3Normal.copyWith(color: textGreyColor),
                     textAlign: TextAlign.center,
-
-
                   ),
                 ),
                 verticalSpaceLarge,

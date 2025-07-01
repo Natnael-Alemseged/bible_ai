@@ -1,14 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_ai/core/constants/app_colors.dart';
-import 'package:bible_ai/core/constants/ui_helpers.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../constants/app_colors.dart';
+import '../../gen/assets.gen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  BottomNavBar({
+  const BottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
@@ -17,61 +18,61 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: blackColor,
+      backgroundColor: whiteColor,
       elevation: 0,
       currentIndex: currentIndex,
-      onTap: (index) {
-        // final int morePageIndex = userService.isPaymentDisabled ? 2 : 3;
-        // if (index == morePageIndex) {
-        //   Trigger the navigation drawer to open when "More" is selected
-        // Scaffold.of(context).openDrawer();
-        // } else {
-        // For other items, proceed with the default onTap behavior
-        onTap(index);
-        // }
-      },
-      selectedItemColor: orangeButtonColor,
-      unselectedItemColor: whiteColor,
+      onTap: onTap,
       type: BottomNavigationBarType.fixed,
+      selectedItemColor: const Color(0xFFD19D00),
+      // 🔥 Active color
+      unselectedItemColor: blackColor,
+      // 🔥 Inactive color
+
       selectedIconTheme: const IconThemeData(
-        size: 36,
-        color: orangeButtonColor,
+        size: 28,
+        color: Color(0xFFD19D00),
       ),
-      unselectedIconTheme: const IconThemeData(size: 30, color: Colors.white),
-      selectedLabelStyle: const TextStyle(color: Colors.white),
-      unselectedLabelStyle: const TextStyle(color: Colors.white),
+      unselectedIconTheme: const IconThemeData(
+        size: 26,
+        color: blackColor,
+      ),
+      selectedLabelStyle: const TextStyle(color: Color(0xFFD19D00)),
+      unselectedLabelStyle: const TextStyle(color: blackColor),
+
       items: [
         BottomNavigationBarItem(
-          icon: Image.asset(
-            currentIndex == 0
-                ? 'assets/nav/featured_active.png'
-                : 'assets/nav/feature_inactive.png',
-            width: 30,
-            height: 30,
+          icon: SvgPicture.asset(
+            Assets.home.path,
+            color: currentIndex == 0 ? const Color(0xFFD19D00) : blackColor,
+            width: 26,
           ),
-          label: 'featured',
+          label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            currentIndex == 1
-                ? 'assets/nav/favorites_active.png'
-                : 'assets/nav/favorites_inactive.png',
-            width: 30,
-            height: 30,
+          icon: SvgPicture.asset(
+            Assets.chatBubbleLeftRight.path,
+            color: currentIndex == 1 ? const Color(0xFFD19D00) : blackColor,
+            width: 26,
           ),
-          label: 'favorites',
+          label: 'Chat',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            currentIndex == 2
-                ? 'assets/nav/playlist_active.png'
-                : 'assets/nav/playlist_inactive.png',
-            width: 30,
-            height: 30,
+          icon: SvgPicture.asset(
+            Assets.bookOpen.path,
+            color: currentIndex == 2 ? const Color(0xFFD19D00) : blackColor,
+            width: 26,
           ),
-          label: 'playlist',
+          label: 'Bible',
         ),
-        BottomNavigationBarItem(icon: const Icon(Icons.menu), label: 'more'),
+
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            Assets.user.path,
+            color: currentIndex == 3 ? const Color(0xFFD19D00) : blackColor,
+            width: 26,
+          ),
+          label: 'Profile',
+        ),
       ],
     );
   }

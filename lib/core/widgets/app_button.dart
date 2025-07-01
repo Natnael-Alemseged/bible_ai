@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
     this.color = primaryColor, // yellow like your screenshot
     this.textStyle,
     this.height = 56,
-    this.borderRadius = 28,
+    this.borderRadius = 18,
     this.width,
   });
 

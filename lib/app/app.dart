@@ -12,9 +12,20 @@ import 'package:bible_ai/ui/views/auth/forgot_password/forgot_password_view.dart
 
 import 'package:bible_ai/ui/views/auth/signup/signup_view.dart';
 import 'package:bible_ai/ui/views/onboarding/onboarding_view.dart';
-import 'package:bible_ai/ui/views/otp/otp_view.dart';
+import 'package:bible_ai/ui/views/auth/otp/otp_view.dart';
 
 import 'package:bible_ai/ui/views/enable_notification/enable_notification_view.dart';
+import 'package:bible_ai/ui/views/main_screen/main_screen_view.dart';
+import 'package:bible_ai/ui/views/chat/chat_view.dart';
+import 'package:bible_ai/ui/views/bible/bible_view.dart';
+import 'package:bible_ai/ui/views/profile/profile_view.dart';
+import 'package:bible_ai/ui/views/profile_management/account_settings/account_settings_view.dart';
+import 'package:bible_ai/ui/views/profile_management/app_preferences/app_preferences_view.dart';
+import 'package:bible_ai/ui/views/profile_management/subscription_and_payments/subscription_and_payments_view.dart';
+import 'package:bible_ai/ui/views/profile_management/help_and_support/help_and_support_view.dart';
+import 'package:bible_ai/ui/views/profile_management/about_the_app/about_the_app_view.dart';
+import 'package:bible_ai/ui/views/bible/bible_chapter_selection/bible_chapter_selection_view.dart';
+import 'package:bible_ai/ui/views/bible/bible_reading/bible_reading_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -32,6 +43,12 @@ import 'package:bible_ai/ui/views/enable_notification/enable_notification_view.d
     MaterialRoute(page: OtpView),
     MaterialRoute(page: CongratulationsView),
     MaterialRoute(page: EnableNotificationView),
+    MaterialRoute(page: MainScreenView),
+    MaterialRoute(page: ChatView),
+    MaterialRoute(page: ProfileView),
+    MaterialRoute(page: BibleVersionSelectionView),
+    MaterialRoute(page: BibleChapterSelectionView),
+    MaterialRoute(page: BibleReadingView),
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
