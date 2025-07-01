@@ -1,0 +1,6 @@
+flutter_gen:
+  output: lib/generated
+  assets:
+    path: assets
+    output: app_images.dart
+    type: Image
