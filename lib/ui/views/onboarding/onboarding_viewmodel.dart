@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../gen/assets.gen.dart';
+
 class OnboardingViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
@@ -12,11 +14,26 @@ class OnboardingViewModel extends BaseViewModel {
 
   /// Characters list for page 3
   final List<Map<String, dynamic>> characters = [
-    {'name': 'Abraham', 'image': 'assets/abraham.png'},
-    {'name': 'Moses', 'image': 'assets/abraham.png'},
-    {'name': 'David', 'image': 'assets/abraham.png'},
-    {'name': 'Mary', 'image': 'assets/abraham.png'},
-    {'name': 'Mary', 'image': 'assets/abraham.png'},
+    {
+      'name': 'Paul',
+      'image': Assets.paul,
+    },
+    {
+      'name': 'Mary',
+      'image': Assets.mary,
+    },
+    {
+      'name': 'Abraham',
+      'image': Assets.abraham,
+    },
+    {
+      'name': 'Jordan Peterson',
+      'image': Assets.jordanPeterson,
+    },
+    {
+      'name': 'C.S Lewis',
+      'image': Assets.cSLewis,
+    },
   ];
 
   int selectedCharacterIndex = 2; // Center one selected by default
@@ -30,6 +47,7 @@ class OnboardingViewModel extends BaseViewModel {
   final List<Map<String, dynamic>> _pages = [
     {
       'icon': Icons.menu_book_outlined,
+      'image':Assets.bibleRipple.path,
       'title': "Welcome to Bible AI",
       'subtitle': "Find quick bible answers\nto questions to life questions",
       'button_text': 'Get Started',
@@ -39,7 +57,7 @@ class OnboardingViewModel extends BaseViewModel {
       'iconSize': 50.0,
     },
     {
-      'icon': Icons.auto_stories_outlined,
+      'image':Assets.bibleMinimal.path,
       'title': "Ask anything and get biblical answers",
       'subtitle': "Find quick bible answers\nto questions to life questions",
       'button_text': 'Continue',
@@ -55,7 +73,8 @@ class OnboardingViewModel extends BaseViewModel {
       'showCharacters': true, // Show character selector instead of icon
     },
     {
-      'icon':Icons.menu_book_outlined,
+      'icon': Icons.menu_book_outlined,
+      'image':Assets.bibleRipple.path,
       'title': "Ask anything and get biblical answers",
       'subtitle': "Find quick bible answers to\nquestions to life questions",
       'button_text': 'Create an account',
@@ -64,11 +83,11 @@ class OnboardingViewModel extends BaseViewModel {
       'shape': BoxShape.circle,
       'iconBackgroundColor': primaryColor,
       'iconSize': 50.0,
-
     },
   ];
 
   Map<String, dynamic> get currentPage => _pages[_currentIndex];
+
   int get currentIndex => _currentIndex;
 
   void onContinue() {

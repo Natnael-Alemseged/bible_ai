@@ -12,15 +12,28 @@ import 'package:flutter/widgets.dart';
 class Assets {
   const Assets._();
 
+  static const AssetGenImage billyGraham =
+      AssetGenImage('assets/Billy Graham.png');
+  static const AssetGenImage cSLewis = AssetGenImage('assets/C.S Lewis.png');
+  static const AssetGenImage david = AssetGenImage('assets/David.png');
+  static const AssetGenImage johnPiper = AssetGenImage('assets/John Piper.png');
+  static const AssetGenImage jordanPeterson =
+      AssetGenImage('assets/Jordan Peterson.png');
+  static const AssetGenImage mary = AssetGenImage('assets/Mary.png');
+  static const AssetGenImage moses = AssetGenImage('assets/Moses.png');
+  static const AssetGenImage paul = AssetGenImage('assets/Paul.png');
   static const AssetGenImage abraham = AssetGenImage('assets/abraham.png');
   static const AssetGenImage apple = AssetGenImage('assets/apple.png');
   static const AssetGenImage bible = AssetGenImage('assets/bible.png');
+  static const AssetGenImage bibleMinimal =
+      AssetGenImage('assets/bible_minimal.png');
+  static const AssetGenImage bibleRipple =
+      AssetGenImage('assets/bible_ripple.png');
   static const AssetGenImage bibleWhite =
       AssetGenImage('assets/bible_white.png');
   static const AssetGenImage congratulations =
       AssetGenImage('assets/congratulations.png');
   static const AssetGenImage google = AssetGenImage('assets/google.png');
-  static const AssetGenImage img = AssetGenImage('assets/img.png');
   static const AssetGenImage notification =
       AssetGenImage('assets/notification.png');
   static const AssetGenImage paywallBackground =
@@ -30,13 +43,22 @@ class Assets {
 
   /// List of all assets
   static List<AssetGenImage> get values => [
+        billyGraham,
+        cSLewis,
+        david,
+        johnPiper,
+        jordanPeterson,
+        mary,
+        moses,
+        paul,
         abraham,
         apple,
         bible,
+        bibleMinimal,
+        bibleRipple,
         bibleWhite,
         congratulations,
         google,
-        img,
         notification,
         paywallBackground,
         profile,

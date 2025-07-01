@@ -70,46 +70,19 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 child: Column(
                   key: ValueKey(current['title']),
                   children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        if (current['showRipple'] == true) ...[
-                          Container(
-                            width: 200,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              shape: current['shape'],
-                              color: primaryColor.withOpacity(0.1),
-                            ),
-                          ),
-                          Container(
-                            width: 150,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              shape: current['shape'],
-                              color: primaryColor.withOpacity(0.2),
-                            ),
-                          ),
-                        ],
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            shape: current['shape'],
-                            color: current['iconBackgroundColor'],
-                          ),
-                          child: Icon(
-                            current['icon'],
-                            size: current['iconSize'] ?? 50.0,
-                            color: blackColor,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: Image.asset(
+                        current['image'],
+                        fit: BoxFit.contain,
+                      ),
                     ),
                     const SizedBox(height: 32),
                   ],
                 ),
               ),
+
 
             SizedBox(height: current['showCharacters'] == true ? 32 : 0),
 
