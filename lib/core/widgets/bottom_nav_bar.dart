@@ -64,7 +64,6 @@ class BottomNavBar extends StatelessWidget {
           ),
           label: 'Bible',
         ),
-
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             Assets.user.path,

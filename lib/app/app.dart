@@ -26,10 +26,12 @@ import 'package:bible_ai/ui/views/profile_management/help_and_support/help_and_s
 import 'package:bible_ai/ui/views/profile_management/about_the_app/about_the_app_view.dart';
 import 'package:bible_ai/ui/views/bible/bible_chapter_selection/bible_chapter_selection_view.dart';
 import 'package:bible_ai/ui/views/bible/bible_reading/bible_reading_view.dart';
+import 'package:bible_ai/ui/views/bible/verse_selection/verse_selection_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
+// @stacked-route`
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
     // MaterialRoute(page: WelcomeOnboarding),
@@ -49,6 +51,7 @@ import 'package:bible_ai/ui/views/bible/bible_reading/bible_reading_view.dart';
     MaterialRoute(page: BibleVersionSelectionView),
     MaterialRoute(page: BibleChapterSelectionView),
     MaterialRoute(page: BibleReadingView),
+    MaterialRoute(page: VerseSelectionView),
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),

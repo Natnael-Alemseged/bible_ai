@@ -78,7 +78,7 @@ class BibleChapterSelectionView
         return ExpansionTile(
           leading: Icon(Icons.book, color: blackColor),
           title: Text(book['name'],
-              style: TextStyle(fontSize: 16, color: blackColor)),
+              style: const TextStyle(fontSize: 16, color: blackColor)),
           children: List.generate(book['chapters'], (i) {
             return ListTile(
               title: Text('${i + 1}'),

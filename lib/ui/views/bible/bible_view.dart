@@ -1,4 +1,5 @@
 import 'package:bible_ai/core/constants/app_colors.dart';
+import 'package:bible_ai/core/constants/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,15 +23,15 @@ class BibleVersionSelectionView
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              verticalSpaceMiddle,
+              const Text(
                 'Select Bible Version',
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: blackColor),
               ),
-              const SizedBox(height: 16),
-              Text(
+              const Text(
                 'Choose your preferred Bible translation',
                 style: TextStyle(fontSize: 16, color: darkGreyColor),
               ),
@@ -85,14 +86,14 @@ class BibleVersionSelectionView
       String iconPath,
       String description) {
     return Card(
+      color: whiteColor,
       margin: const EdgeInsets.only(bottom: 16),
       child: ListTile(
-        leading: Image.asset(iconPath, width: 40, height: 40),
         title: Text(title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 18, fontWeight: FontWeight.bold, color: blackColor)),
         subtitle: Text(description,
-            style: TextStyle(fontSize: 14, color: darkGreyColor)),
+            style: const TextStyle(fontSize: 14, color: darkGreyColor)),
         onTap: () => viewModel.selectVersion(title),
       ),
     );
