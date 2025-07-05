@@ -40,17 +40,17 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                       onTap: () => viewModel.selectCharacter(index),
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 6),
-                        padding: const EdgeInsets.all(3),
+                        // padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
                             color:
                                 isSelected ? primaryColor : Colors.transparent,
-                            width: 3,
+                            width: 2.22,
                           ),
                         ),
                         child: CircleAvatar(
-                          radius: isCenter ? 40 : 25, // Center one is larger
+                          radius: isCenter ? 40 : 24, // Center one is larger
                           backgroundColor: whiteColor,
                           backgroundImage:
                               AssetImage(viewModel.characters[index]['image']),
@@ -118,7 +118,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
             const Spacer(),
             viewModel.currentIndex == 3
                 ? TextButton(
-                    onPressed: () {},
+                    onPressed: viewModel.toHome,
                     child: const Text("Continue without an Account",
                         style: AppTextStyle.h3Normal))
                 : const SizedBox(),

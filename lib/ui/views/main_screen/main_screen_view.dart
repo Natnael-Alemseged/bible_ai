@@ -22,11 +22,15 @@ class MainScreenView extends StackedView<MainScreenViewModel> {
         controller: viewModel.pageController,
         onPageChanged: viewModel.setCurrentIndex,
         physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          HomeView(),
-          ChatView(),
-          BibleVersionSelectionView(),
-          ProfileView(),
+        children: [
+          const HomeView(),
+          const ChatView(),
+          Navigator(
+            onGenerateRoute: (settings) => MaterialPageRoute(
+              builder: (_) => const BibleVersionSelectionView(),
+            ),
+          ),
+          const ProfileView(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(

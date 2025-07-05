@@ -22,10 +22,7 @@ class HomeViewModel extends BaseViewModel {
 
   void readFullChapter(BuildContext context) {
     // Later replace with actual navigation
-
   }
-
-
 
   final List<Map<String, String>> characters = [
     {'name': 'Moses', 'image': Assets.moses.path},
@@ -39,7 +36,8 @@ class HomeViewModel extends BaseViewModel {
     {'name': 'Abraham', 'image': Assets.abraham.path},
   ];
 
-  final String dailyVerse = 'Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to Him, and He will make your paths straight.';
+  final String dailyVerse =
+      'Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to Him, and He will make your paths straight.';
   final String verseReference = 'Proverbs 3:5-6';
 
   final List<String> suggestedQuestions = [
@@ -53,21 +51,15 @@ class HomeViewModel extends BaseViewModel {
     'What is heaven like?',
   ];
 
-
   void askBibleAi() {
     // Implement AI trigger
   }
-
-
 
   void onFavoriteVerse() {
     // Implement favorite logic
   }
 
-
-
   void askSuggestedQuestion(String question) {
     // Implement question submission
   }
-
 }

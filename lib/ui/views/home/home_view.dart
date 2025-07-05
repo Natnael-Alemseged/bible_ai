@@ -47,7 +47,7 @@ class HomeView extends StackedView<HomeViewModel> {
               verticalSpaceMedium,
 
               // 🔥 Bible Verse Section
-              _buildBibleVerseSection(viewModel,context),
+              _buildBibleVerseSection(viewModel, context),
 
               const Spacer(),
 
@@ -87,20 +87,21 @@ Widget _buildCharacterAvatars(HomeViewModel viewModel) {
             children: [
               CircleAvatar(
                 radius: 50, // This controls the size of the circle itself
-                child: ClipOval( // Ensures the image is clipped to a circle
+                child: ClipOval(
+                  // Ensures the image is clipped to a circle
                   child: Image.asset(
                     char['image']!,
                     width: 100, // Desired width
                     height: 100, // Desired height
-                    fit: BoxFit.cover, // Ensures the image covers the area, potentially cropping
+                    fit: BoxFit
+                        .cover, // Ensures the image covers the area, potentially cropping
                   ),
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 char['name']!,
-                style:AppTextStyle.h4Normal,
-
+                style: AppTextStyle.h4Normal,
               ),
             ],
           ),
@@ -110,14 +111,13 @@ Widget _buildCharacterAvatars(HomeViewModel viewModel) {
   );
 }
 
-
 /// Builds the Bible verse section
 Widget _buildBibleVerseSection(HomeViewModel viewModel, BuildContext context) {
   return Card(
     elevation: 4,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     child: Container(
-      color: const Color(0xFFFFFAEC),
+      color: primaryColorLight,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +127,10 @@ Widget _buildBibleVerseSection(HomeViewModel viewModel, BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Chip(
-                label: Text('Daily verse',style: AppTextStyle.h4Normal,),
+                label: Text(
+                  'Daily verse',
+                  style: AppTextStyle.h4Normal,
+                ),
                 backgroundColor: Color(0xFFFFF0C3),
                 labelStyle: TextStyle(color: Colors.white),
               ),
@@ -160,14 +163,12 @@ Widget _buildBibleVerseSection(HomeViewModel viewModel, BuildContext context) {
                 children: [
                   IconButton(
                     color: const Color(0xFFFFF0C3),
-                    icon: const Icon(Icons.share,
-
-                      color:blackColor ),
+                    icon: const Icon(Icons.share, color: blackColor),
                     onPressed: viewModel.onShareVerse,
                     tooltip: 'Share verse',
                   ),
                   IconButton(
-                    color:  const Color(0xFFFFF0C3),
+                    color: const Color(0xFFFFF0C3),
                     icon: Icon(
                       viewModel.isVerseFavorited
                           ? Icons.favorite
@@ -183,12 +184,12 @@ Widget _buildBibleVerseSection(HomeViewModel viewModel, BuildContext context) {
                 onPressed: () => viewModel.readFullChapter(context),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
-                   backgroundColor: const Color(0xFFFFF0C3),
+                  backgroundColor: const Color(0xFFFFF0C3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
                 child: const Text(
                   'Read full chapter',
@@ -202,8 +203,6 @@ Widget _buildBibleVerseSection(HomeViewModel viewModel, BuildContext context) {
     ),
   );
 }
-
-
 
 /// Builds the user input section
 Widget _buildUserInputSection(HomeViewModel viewModel) {
@@ -231,7 +230,7 @@ Widget _buildUserInputSection(HomeViewModel viewModel) {
               onTap: () => viewModel.askSuggestedQuestion(question),
               child: Container(
                 padding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(color: Colors.grey.shade300),
@@ -259,5 +258,3 @@ Widget _buildUserInputSection(HomeViewModel viewModel) {
     ],
   );
 }
-
-

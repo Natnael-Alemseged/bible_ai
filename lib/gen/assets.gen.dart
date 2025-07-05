@@ -26,6 +26,8 @@ class Assets {
   static const AssetGenImage moses = AssetGenImage('assets/Moses.png');
   static const AssetGenImage paul = AssetGenImage('assets/Paul.png');
   static const AssetGenImage abraham = AssetGenImage('assets/abraham.png');
+  static const AssetGenImage adjustmentsVertical =
+      AssetGenImage('assets/adjustments-vertical.png');
   static const AssetGenImage apple = AssetGenImage('assets/apple.png');
   static const AssetGenImage bell = AssetGenImage('assets/bell.gif');
   static const AssetGenImage bible = AssetGenImage('assets/bible.png');
@@ -36,6 +38,7 @@ class Assets {
   static const AssetGenImage bibleWhite =
       AssetGenImage('assets/bible_white.png');
   static const SvgGenImage bookOpen = SvgGenImage('assets/book_open.svg');
+  static const AssetGenImage bookmark = AssetGenImage('assets/bookmark.png');
   static const SvgGenImage chatBubbleLeftRight =
       SvgGenImage('assets/chat-bubble-left-right.svg');
   static const AssetGenImage congratulations =
@@ -45,12 +48,12 @@ class Assets {
   static const AssetGenImage google = AssetGenImage('assets/google.png');
   static const SvgGenImage home = SvgGenImage('assets/home.svg');
   static const AssetGenImage leaf = AssetGenImage('assets/leaf.png');
-  static const AssetGenImage message = AssetGenImage('assets/message.png');
   static const AssetGenImage mobile = AssetGenImage('assets/mobile.png');
   static const AssetGenImage notification =
       AssetGenImage('assets/notification.png');
   static const AssetGenImage paywallBackground =
       AssetGenImage('assets/paywall_background.png');
+  static const AssetGenImage play = AssetGenImage('assets/play.png');
   static const AssetGenImage profile = AssetGenImage('assets/profile.png');
   static const SvgGenImage user = SvgGenImage('assets/user.svg');
   static const AssetGenImage welcome = AssetGenImage('assets/welcome.png');
@@ -66,6 +69,7 @@ class Assets {
         moses,
         paul,
         abraham,
+        adjustmentsVertical,
         apple,
         bell,
         bible,
@@ -73,16 +77,17 @@ class Assets {
         bibleRipple,
         bibleWhite,
         bookOpen,
+        bookmark,
         chatBubbleLeftRight,
         congratulations,
         creditCard,
         google,
         home,
         leaf,
-        message,
         mobile,
         notification,
         paywallBackground,
+        play,
         profile,
         user,
         welcome

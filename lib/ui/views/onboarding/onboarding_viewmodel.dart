@@ -98,4 +98,8 @@ class OnboardingViewModel extends BaseViewModel {
       _navigationService.replaceWithLoginView();
     }
   }
+
+  void toHome() {
+    _navigationService.clearStackAndShow(Routes.mainScreenView);
+  }
 }

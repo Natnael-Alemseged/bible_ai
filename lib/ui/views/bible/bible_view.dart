@@ -23,7 +23,7 @@ class BibleVersionSelectionView
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              verticalSpaceMiddle,
+              verticalSpaceLarge,
               const Text(
                 'Select Bible Version',
                 style: TextStyle(
@@ -94,7 +94,7 @@ class BibleVersionSelectionView
                 fontSize: 18, fontWeight: FontWeight.bold, color: blackColor)),
         subtitle: Text(description,
             style: const TextStyle(fontSize: 14, color: darkGreyColor)),
-        onTap: () => viewModel.selectVersion(title),
+        onTap: () => viewModel.selectVersion(title, context),
       ),
     );
   }

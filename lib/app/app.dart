@@ -27,6 +27,7 @@ import 'package:bible_ai/ui/views/profile_management/about_the_app/about_the_app
 import 'package:bible_ai/ui/views/bible/bible_chapter_selection/bible_chapter_selection_view.dart';
 import 'package:bible_ai/ui/views/bible/bible_reading/bible_reading_view.dart';
 import 'package:bible_ai/ui/views/bible/verse_selection/verse_selection_view.dart';
+import 'package:bible_ai/ui/dialogs/welcome_premium/welcome_premium_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -49,7 +50,7 @@ import 'package:bible_ai/ui/views/bible/verse_selection/verse_selection_view.dar
     MaterialRoute(page: ChatView),
     MaterialRoute(page: ProfileView),
     MaterialRoute(page: BibleVersionSelectionView),
-    MaterialRoute(page: BibleChapterSelectionView),
+    MaterialRoute(page: BookChaptersView),
     MaterialRoute(page: BibleReadingView),
     MaterialRoute(page: VerseSelectionView),
   ],
@@ -66,7 +67,8 @@ import 'package:bible_ai/ui/views/bible/verse_selection/verse_selection_view.dar
   ],
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
-    // @stacked-dialog
+    StackedDialog(classType: WelcomePremiumDialog),
+// @stacked-dialog
   ],
 )
 class App {}

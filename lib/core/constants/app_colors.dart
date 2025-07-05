@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 // Color constants
 
 const Color primaryColor = Color(0xFFFFBF00);
+const Color tabColor = Color(0xFFD19D00);
+const Color borderColor = Color(0xFF453300);
 const Color secondary = Color(0xFF212121); // Dark
 const Color accent = Color(0xFF757575); // Grey
-const Color primaryColorLight = Color(0xFF0A0633);
+const Color primaryColorLight = Color(0xFFFFFAEC);
 const Color softYellow = Color(0xFFFFF5DC); // Soft light yellow background
 const Color lightAmber = Color(0xFFFFE08C); // Slightly pale amber
 const Color fadedPrimary = Color(0xFFFFE6B3); // Faded version of primary

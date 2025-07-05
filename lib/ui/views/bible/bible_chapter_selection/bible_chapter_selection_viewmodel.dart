@@ -5,39 +5,32 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 
-class BibleChapterSelectionViewModel extends BaseViewModel {
+class BookChaptersViewModel extends BaseViewModel {
   final String version;
+  final String book;
+  final int totalChapters;
+  final VoidCallback onPreviousBook;
+  final VoidCallback onNextBook;
+  final void Function(int chapter) onChapterTap;
 
-  late TabController tabController; // <-- We'll initialize this later
+  BookChaptersViewModel({
+    required this.version,
+    required this.book,
+    required this.totalChapters,
+    required this.onPreviousBook,
+    required this.onNextBook,
+    required this.onChapterTap,
+  });
 
-  BibleChapterSelectionViewModel(this.version);
-
-  void init(TickerProvider vsync) {
-    tabController = TabController(length: 2, vsync: vsync); // 2 tabs: OT & NT
+  void handlePreviousBook() {
+    onPreviousBook();
   }
 
-  // Simulated books data
-  List<Map<String, dynamic>> get books => [
-        {'name': 'Genesis', 'chapters': 50},
-        {'name': 'Exodus', 'chapters': 40},
-        {'name': 'Leviticus', 'chapters': 27},
-        // Add more books as needed
-      ];
-
-  void selectChapter(String bookName, int chapterNumber) {
-    setBusy(true);
-    Future.delayed(const Duration(seconds: 1), () {
-      setBusy(false);
-      // _navigationService.navigateToVerseSelectionView(
-      //   bookName: bookName,
-      //   chapterNumber: chapterNumber,
-      // );
-    });
+  void handleNextBook() {
+    onNextBook();
   }
 
-  void setSearchQuery(String query) {
-    // Implement search logic here
+  void handleChapterTap(int chapter) {
+    onChapterTap(chapter);
   }
-
-  NavigationService _navigationService = locator<NavigationService>();
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../core/constants/ui_helpers.dart';
+import 'chat_messages.dart';
 import 'chat_viewmodel.dart';
 
 class ChatView extends StackedView<ChatViewModel> {
@@ -42,8 +43,8 @@ class ChatView extends StackedView<ChatViewModel> {
                     onTap: viewModel.toggleCharacterSelector,
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                         color: Colors.amber.shade100,
                         borderRadius: BorderRadius.circular(20),
@@ -128,69 +129,27 @@ class ChatView extends StackedView<ChatViewModel> {
                 ),
               ),
 
-              const Spacer(),
-
-              // 📖 BibleRipple image
-              Center(
-                child: Image.asset(
-                  Assets.bibleRipple.path,
-                  width: 150,
+              if (!viewModel.chatStarted) ...[
+                const Spacer(),
+                Center(child: Image.asset(Assets.bibleRipple.path, width: 150)),
+                const Spacer(),
+                const AnimatedDefaultTextStyle(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  style: AppTextStyle.h2Bold,
+                  child: Text('How can I help you today?'),
                 ),
-              ),
-
-              const Spacer(),
-
-              // 🔠 Animated prompt title
-              AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                style: viewModel.showCharacterSelector
-                    ? const TextStyle(
-                    fontSize: 24, fontWeight: FontWeight.bold,color: blackColor)
-                    : AppTextStyle.h2Bold,
-                child: const Text('How can I help you today?'),
-              ),
-
-              const SizedBox(height: 12),
-
-              // 🗯️ Two horizontally scrollable rows of suggestions
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Row 1
-                  SizedBox(
-                    height: 38,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: (viewModel.suggestions.length / 2).ceil(),
-                      separatorBuilder: (_, __) => const SizedBox(width: 8),
-                      itemBuilder: (context, index) {
-                        if (index * 2 >= viewModel.suggestions.length)
-                          return const SizedBox();
-                        final suggestion = viewModel.suggestions[index * 2];
-                        return _buildSuggestionChip(suggestion, viewModel);
-                      },
-                    ),
+                const SizedBox(height: 12),
+                _buildSuggestionChips(viewModel),
+              ] else ...[
+                Expanded(
+                  child: ChatMessages(
+                    messages: viewModel.messages,
+                    controller: viewModel.scrollController,
+                    showTypingIndicator: viewModel.isTyping,
                   ),
-                  verticalSpaceSmall,
-                  // Row 2
-                  SizedBox(
-                    height: 38,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: (viewModel.suggestions.length / 2).ceil(),
-                      separatorBuilder: (_, __) => const SizedBox(width: 8),
-                      itemBuilder: (context, index) {
-                        if (index * 2 + 1 >= viewModel.suggestions.length)
-                          return const SizedBox();
-                        final suggestion =
-                        viewModel.suggestions[index * 2 + 1];
-                        return _buildSuggestionChip(suggestion, viewModel);
-                      },
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
 
               verticalSpaceMedium,
 
@@ -200,21 +159,38 @@ class ChatView extends StackedView<ChatViewModel> {
                   color: const Color(0xFFF4F4F4),
                   borderRadius: BorderRadius.circular(24),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                height: 50,
+                padding: const EdgeInsets.only(left: 16, right: 8),
                 child: Row(
                   children: [
                     Expanded(
                       child: TextField(
                         controller: viewModel.inputController,
+                        onChanged: (_) => viewModel.notifyListeners(),
                         decoration: const InputDecoration(
                           hintText: 'Ask Bible ai',
                           border: InputBorder.none,
                         ),
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.mic, color: Colors.black),
-                      onPressed: viewModel.onMicPressed,
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: blackColor, shape: BoxShape.circle),
+                        child: IconButton(
+                          icon: Icon(
+                            viewModel.inputController.text.trim().isNotEmpty
+                                ? Icons.send
+                                : Icons.mic,
+                            color: whiteColor,
+                          ),
+                          onPressed:
+                          viewModel.inputController.text.trim().isNotEmpty
+                              ? viewModel.onSendPressed
+                              : viewModel.onMicPressed,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -249,4 +225,41 @@ class ChatView extends StackedView<ChatViewModel> {
 
   @override
   ChatViewModel viewModelBuilder(BuildContext context) => ChatViewModel();
+
+  Widget _buildSuggestionChips(ChatViewModel viewModel) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 38,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: (viewModel.suggestions.length / 2).ceil(),
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            itemBuilder: (context, index) {
+              if (index * 2 >= viewModel.suggestions.length)
+                return const SizedBox();
+              final suggestion = viewModel.suggestions[index * 2];
+              return _buildSuggestionChip(suggestion, viewModel);
+            },
+          ),
+        ),
+        verticalSpaceSmall,
+        SizedBox(
+          height: 38,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: (viewModel.suggestions.length / 2).ceil(),
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            itemBuilder: (context, index) {
+              if (index * 2 + 1 >= viewModel.suggestions.length) {
+                return const SizedBox();
+              }
+              final suggestion = viewModel.suggestions[index * 2 + 1];
+              return _buildSuggestionChip(suggestion, viewModel);
+            },
+          ),
+        ),
+      ],
+    );
+  }
 }

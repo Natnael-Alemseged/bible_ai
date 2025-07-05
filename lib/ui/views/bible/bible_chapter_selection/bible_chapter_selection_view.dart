@@ -1,19 +1,31 @@
-import 'package:bible_ai/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:bible_ai/core/constants/app_colors.dart';
 
 import 'bible_chapter_selection_viewmodel.dart';
 
-class BibleChapterSelectionView
-    extends StackedView<BibleChapterSelectionViewModel> {
+class BookChaptersView extends StackedView<BookChaptersViewModel> {
   final String version;
-  const BibleChapterSelectionView({Key? key, required this.version})
-      : super(key: key);
+  final String book;
+  final int totalChapters;
+  final VoidCallback onPreviousBook;
+  final VoidCallback onNextBook;
+  final void Function(int chapter) onChapterTap;
+
+  const BookChaptersView({
+    super.key,
+    required this.version,
+    required this.book,
+    required this.totalChapters,
+    required this.onPreviousBook,
+    required this.onNextBook,
+    required this.onChapterTap,
+  });
 
   @override
   Widget builder(
     BuildContext context,
-    BibleChapterSelectionViewModel viewModel,
+    BookChaptersViewModel viewModel,
     Widget? child,
   ) {
     return Scaffold(
@@ -21,45 +33,70 @@ class BibleChapterSelectionView
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search Bible Verses, Chapters, Quotes',
-                  prefixIcon: Icon(Icons.search, color: darkGreyColor),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                ),
-                onChanged: viewModel.setSearchQuery,
+            const SizedBox(height: 16),
+            Text(
+              '${viewModel.version} bible edition',
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.black,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                version,
-                style: TextStyle(
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: viewModel.handlePreviousBook,
+                  icon: const Icon(Icons.chevron_left, color: Colors.black),
+                ),
+                Text(
+                  viewModel.book,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: blackColor),
-              ),
-            ),
-            TabBar(
-              controller: viewModel.tabController,
-              tabs: const [
-                Tab(text: 'Old Testament'),
-                Tab(text: 'New Testament'),
+                    color: primaryColor,
+                  ),
+                ),
+                IconButton(
+                  onPressed: viewModel.handleNextBook,
+                  icon: const Icon(Icons.chevron_right, color: Colors.black),
+                ),
               ],
-              indicatorColor: primaryColor,
             ),
+            const SizedBox(height: 16),
             Expanded(
-              child: TabBarView(
-                controller: viewModel.tabController,
-                children: [
-                  _buildBookList(context, viewModel, 'old'),
-                  _buildBookList(context, viewModel, 'new'),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: GridView.builder(
+                  itemCount: viewModel.totalChapters,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 7,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    childAspectRatio: 1.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    final chapter = index + 1;
+                    return InkWell(
+                      onTap: () => viewModel.handleChapterTap(chapter),
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: primaryColor),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          '$chapter',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
@@ -68,29 +105,14 @@ class BibleChapterSelectionView
     );
   }
 
-  Widget _buildBookList(BuildContext context,
-      BibleChapterSelectionViewModel viewModel, String testament) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: viewModel.books.length,
-      itemBuilder: (context, index) {
-        final book = viewModel.books[index];
-        return ExpansionTile(
-          leading: Icon(Icons.book, color: blackColor),
-          title: Text(book['name'],
-              style: const TextStyle(fontSize: 16, color: blackColor)),
-          children: List.generate(book['chapters'], (i) {
-            return ListTile(
-              title: Text('${i + 1}'),
-              onTap: () => viewModel.selectChapter(book['name'], i + 1),
-            );
-          }),
-        );
-      },
-    );
-  }
-
   @override
-  BibleChapterSelectionViewModel viewModelBuilder(BuildContext context) =>
-      BibleChapterSelectionViewModel(version);
+  BookChaptersViewModel viewModelBuilder(BuildContext context) =>
+      BookChaptersViewModel(
+        version: version,
+        book: book,
+        totalChapters: totalChapters,
+        onPreviousBook: onPreviousBook,
+        onNextBook: onNextBook,
+        onChapterTap: onChapterTap,
+      );
 }

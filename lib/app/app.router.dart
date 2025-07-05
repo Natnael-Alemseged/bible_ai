@@ -59,7 +59,7 @@ class Routes {
 
   static const bibleVersionSelectionView = '/bible-version-selection-view';
 
-  static const bibleChapterSelectionView = '/bible-chapter-selection-view';
+  static const bookChaptersView = '/book-chapters-view';
 
   static const bibleReadingView = '/bible-reading-view';
 
@@ -79,7 +79,7 @@ class Routes {
     chatView,
     profileView,
     bibleVersionSelectionView,
-    bibleChapterSelectionView,
+    bookChaptersView,
     bibleReadingView,
     verseSelectionView,
   };
@@ -140,8 +140,8 @@ class StackedRouter extends _i1.RouterBase {
       page: _i14.BibleVersionSelectionView,
     ),
     _i1.RouteDef(
-      Routes.bibleChapterSelectionView,
-      page: _i15.BibleChapterSelectionView,
+      Routes.bookChaptersView,
+      page: _i15.BookChaptersView,
     ),
     _i1.RouteDef(
       Routes.bibleReadingView,
@@ -232,12 +232,17 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i15.BibleChapterSelectionView: (data) {
-      final args =
-          data.getArgs<BibleChapterSelectionViewArguments>(nullOk: false);
+    _i15.BookChaptersView: (data) {
+      final args = data.getArgs<BookChaptersViewArguments>(nullOk: false);
       return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => _i15.BibleChapterSelectionView(
-            key: args.key, version: args.version),
+        builder: (context) => _i15.BookChaptersView(
+            key: args.key,
+            version: args.version,
+            book: args.book,
+            totalChapters: args.totalChapters,
+            onPreviousBook: args.onPreviousBook,
+            onNextBook: args.onNextBook,
+            onChapterTap: args.onChapterTap),
         settings: data,
       );
     },
@@ -248,7 +253,8 @@ class StackedRouter extends _i1.RouterBase {
             key: args.key,
             version: args.version,
             book: args.book,
-            chapter: args.chapter),
+            chapter: args.chapter,
+            title: args.title),
         settings: data,
       );
     },
@@ -267,30 +273,57 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-class BibleChapterSelectionViewArguments {
-  const BibleChapterSelectionViewArguments({
+class BookChaptersViewArguments {
+  const BookChaptersViewArguments({
     this.key,
     required this.version,
+    required this.book,
+    required this.totalChapters,
+    required this.onPreviousBook,
+    required this.onNextBook,
+    required this.onChapterTap,
   });
 
   final _i18.Key? key;
 
   final String version;
 
+  final String book;
+
+  final int totalChapters;
+
+  final void Function() onPreviousBook;
+
+  final void Function() onNextBook;
+
+  final void Function(int) onChapterTap;
+
   @override
   String toString() {
-    return '{"key": "$key", "version": "$version"}';
+    return '{"key": "$key", "version": "$version", "book": "$book", "totalChapters": "$totalChapters", "onPreviousBook": "$onPreviousBook", "onNextBook": "$onNextBook", "onChapterTap": "$onChapterTap"}';
   }
 
   @override
-  bool operator ==(covariant BibleChapterSelectionViewArguments other) {
+  bool operator ==(covariant BookChaptersViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.version == version;
+    return other.key == key &&
+        other.version == version &&
+        other.book == book &&
+        other.totalChapters == totalChapters &&
+        other.onPreviousBook == onPreviousBook &&
+        other.onNextBook == onNextBook &&
+        other.onChapterTap == onChapterTap;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ version.hashCode;
+    return key.hashCode ^
+        version.hashCode ^
+        book.hashCode ^
+        totalChapters.hashCode ^
+        onPreviousBook.hashCode ^
+        onNextBook.hashCode ^
+        onChapterTap.hashCode;
   }
 }
 
@@ -300,6 +333,7 @@ class BibleReadingViewArguments {
     required this.version,
     required this.book,
     required this.chapter,
+    required this.title,
   });
 
   final _i18.Key? key;
@@ -310,9 +344,11 @@ class BibleReadingViewArguments {
 
   final int chapter;
 
+  final String title;
+
   @override
   String toString() {
-    return '{"key": "$key", "version": "$version", "book": "$book", "chapter": "$chapter"}';
+    return '{"key": "$key", "version": "$version", "book": "$book", "chapter": "$chapter", "title": "$title"}';
   }
 
   @override
@@ -321,12 +357,17 @@ class BibleReadingViewArguments {
     return other.key == key &&
         other.version == version &&
         other.book == book &&
-        other.chapter == chapter;
+        other.chapter == chapter &&
+        other.title == title;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ version.hashCode ^ book.hashCode ^ chapter.hashCode;
+    return key.hashCode ^
+        version.hashCode ^
+        book.hashCode ^
+        chapter.hashCode ^
+        title.hashCode;
   }
 }
 
@@ -513,18 +554,29 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToBibleChapterSelectionView({
+  Future<dynamic> navigateToBookChaptersView({
     _i18.Key? key,
     required String version,
+    required String book,
+    required int totalChapters,
+    required void Function() onPreviousBook,
+    required void Function() onNextBook,
+    required void Function(int) onChapterTap,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   }) async {
-    return navigateTo<dynamic>(Routes.bibleChapterSelectionView,
-        arguments:
-            BibleChapterSelectionViewArguments(key: key, version: version),
+    return navigateTo<dynamic>(Routes.bookChaptersView,
+        arguments: BookChaptersViewArguments(
+            key: key,
+            version: version,
+            book: book,
+            totalChapters: totalChapters,
+            onPreviousBook: onPreviousBook,
+            onNextBook: onNextBook,
+            onChapterTap: onChapterTap),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -536,6 +588,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
     required String version,
     required String book,
     required int chapter,
+    required String title,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -544,7 +597,11 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }) async {
     return navigateTo<dynamic>(Routes.bibleReadingView,
         arguments: BibleReadingViewArguments(
-            key: key, version: version, book: book, chapter: chapter),
+            key: key,
+            version: version,
+            book: book,
+            chapter: chapter,
+            title: title),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -747,18 +804,29 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithBibleChapterSelectionView({
+  Future<dynamic> replaceWithBookChaptersView({
     _i18.Key? key,
     required String version,
+    required String book,
+    required int totalChapters,
+    required void Function() onPreviousBook,
+    required void Function() onNextBook,
+    required void Function(int) onChapterTap,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   }) async {
-    return replaceWith<dynamic>(Routes.bibleChapterSelectionView,
-        arguments:
-            BibleChapterSelectionViewArguments(key: key, version: version),
+    return replaceWith<dynamic>(Routes.bookChaptersView,
+        arguments: BookChaptersViewArguments(
+            key: key,
+            version: version,
+            book: book,
+            totalChapters: totalChapters,
+            onPreviousBook: onPreviousBook,
+            onNextBook: onNextBook,
+            onChapterTap: onChapterTap),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -770,6 +838,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
     required String version,
     required String book,
     required int chapter,
+    required String title,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -778,7 +847,11 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.bibleReadingView,
         arguments: BibleReadingViewArguments(
-            key: key, version: version, book: book, chapter: chapter),
+            key: key,
+            version: version,
+            book: book,
+            chapter: chapter,
+            title: title),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
