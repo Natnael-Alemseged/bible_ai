@@ -28,10 +28,21 @@ import 'package:bible_ai/ui/views/bible/bible_chapter_selection/bible_chapter_se
 import 'package:bible_ai/ui/views/bible/bible_reading/bible_reading_view.dart';
 import 'package:bible_ai/ui/views/bible/verse_selection/verse_selection_view.dart';
 import 'package:bible_ai/ui/dialogs/welcome_premium/welcome_premium_dialog.dart';
+
+import 'package:bible_ai/ui/views/profile_management/bible_version_profile/bible_version_profile_view.dart';
+import 'package:bible_ai/ui/views/profile_management/notifications/notifications_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: AccountSettingsView),
+    MaterialRoute(page: AppPreferencesView),
+    MaterialRoute(page: SubscriptionAndPaymentsView),
+    MaterialRoute(page: HelpAndSupportView),
+    MaterialRoute(page: AboutTheAppView),
+
+    MaterialRoute(page: BibleVersionProfileView),
+    MaterialRoute(page: NotificationsView),
 // @stacked-route`
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),

@@ -34,7 +34,8 @@ class ChatMessages extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 4),
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.7),
               decoration: BoxDecoration(
                 color: isUser ? Colors.amber : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(20),
@@ -58,7 +59,8 @@ class TypingIndicatorBubble extends StatefulWidget {
   State<TypingIndicatorBubble> createState() => _TypingIndicatorBubbleState();
 }
 
-class _TypingIndicatorBubbleState extends State<TypingIndicatorBubble> with SingleTickerProviderStateMixin {
+class _TypingIndicatorBubbleState extends State<TypingIndicatorBubble>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> dotOneAnim;
   late Animation<double> dotTwoAnim;
@@ -74,13 +76,19 @@ class _TypingIndicatorBubbleState extends State<TypingIndicatorBubble> with Sing
     )..repeat();
 
     dotOneAnim = Tween<double>(begin: 0, end: -3).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.6, curve: Curves.easeInOut)),
+      CurvedAnimation(
+          parent: _controller,
+          curve: const Interval(0.0, 0.6, curve: Curves.easeInOut)),
     );
     dotTwoAnim = Tween<double>(begin: 0, end: -3).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.2, 0.8, curve: Curves.easeInOut)),
+      CurvedAnimation(
+          parent: _controller,
+          curve: const Interval(0.2, 0.8, curve: Curves.easeInOut)),
     );
     dotThreeAnim = Tween<double>(begin: 0, end: -3).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.4, 1.0, curve: Curves.easeInOut)),
+      CurvedAnimation(
+          parent: _controller,
+          curve: const Interval(0.4, 1.0, curve: Curves.easeInOut)),
     );
   }
 

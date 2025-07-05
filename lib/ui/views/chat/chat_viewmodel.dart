@@ -141,7 +141,6 @@
 //   }
 // }
 
-
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 
@@ -163,7 +162,16 @@ class ChatViewModel extends BaseViewModel {
     });
   }
 
-  List<Map<String, String>> messages = []; // Example: [{'role': 'user', 'text': 'Hi'}]
+  ChatViewModel() {
+    inputController.addListener(_onInputChanged);
+  }
+
+  void _onInputChanged() {
+    notifyListeners(); // ensures the icon updates
+  }
+
+  List<Map<String, String>> messages =
+      []; // Example: [{'role': 'user', 'text': 'Hi'}]
 
   bool _isTyping = false;
 

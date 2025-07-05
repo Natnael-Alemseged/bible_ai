@@ -80,7 +80,8 @@ class BibleReadingView extends StackedView<BibleReadingViewModel> {
                             // Yellow Chapter Header
                             Container(
                               width: screenWidth(context),
-                              margin: const EdgeInsets.symmetric(horizontal: 16),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                               decoration: BoxDecoration(
@@ -98,7 +99,8 @@ class BibleReadingView extends StackedView<BibleReadingViewModel> {
                             // Chapter Content
                             Expanded(
                               child: SingleChildScrollView(
-                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
                                 child: RichText(
                                   text: TextSpan(
                                     style: const TextStyle(
@@ -128,8 +130,8 @@ class BibleReadingView extends StackedView<BibleReadingViewModel> {
                           borderRadius: BorderRadius.circular(12),
                           side: const BorderSide(color: borderColor),
                         ),
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 14),
                         elevation: 0,
                       ),
                       child: const Row(
@@ -156,7 +158,6 @@ class BibleReadingView extends StackedView<BibleReadingViewModel> {
         ),
       ),
     );
-
   }
 
   List<TextSpan> _buildFormattedText(String text) {

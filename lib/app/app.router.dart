@@ -6,33 +6,61 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:bible_ai/ui/views/auth/forgot_password/forgot_password_view.dart'
-    as _i7;
-import 'package:bible_ai/ui/views/auth/login/login_view.dart' as _i4;
-import 'package:bible_ai/ui/views/auth/otp/otp_view.dart' as _i8;
-import 'package:bible_ai/ui/views/auth/signup/signup_view.dart' as _i6;
+    as _i14;
+import 'package:bible_ai/ui/views/auth/login/login_view.dart' as _i11;
+import 'package:bible_ai/ui/views/auth/otp/otp_view.dart' as _i15;
+import 'package:bible_ai/ui/views/auth/signup/signup_view.dart' as _i13;
 import 'package:bible_ai/ui/views/bible/bible_chapter_selection/bible_chapter_selection_view.dart'
-    as _i15;
+    as _i22;
 import 'package:bible_ai/ui/views/bible/bible_reading/bible_reading_view.dart'
-    as _i16;
-import 'package:bible_ai/ui/views/bible/bible_view.dart' as _i14;
+    as _i23;
+import 'package:bible_ai/ui/views/bible/bible_view.dart' as _i21;
 import 'package:bible_ai/ui/views/bible/verse_selection/verse_selection_view.dart'
-    as _i17;
-import 'package:bible_ai/ui/views/chat/chat_view.dart' as _i12;
+    as _i24;
+import 'package:bible_ai/ui/views/chat/chat_view.dart' as _i19;
 import 'package:bible_ai/ui/views/congratulations/congratulations_view.dart'
-    as _i9;
+    as _i16;
 import 'package:bible_ai/ui/views/enable_notification/enable_notification_view.dart'
-    as _i10;
-import 'package:bible_ai/ui/views/home/home_view.dart' as _i2;
-import 'package:bible_ai/ui/views/main_screen/main_screen_view.dart' as _i11;
-import 'package:bible_ai/ui/views/onboarding/onboarding_view.dart' as _i5;
-import 'package:bible_ai/ui/views/profile/profile_view.dart' as _i13;
-import 'package:bible_ai/ui/views/startup/startup_view.dart' as _i3;
-import 'package:flutter/material.dart' as _i18;
+    as _i17;
+import 'package:bible_ai/ui/views/home/home_view.dart' as _i9;
+import 'package:bible_ai/ui/views/main_screen/main_screen_view.dart' as _i18;
+import 'package:bible_ai/ui/views/onboarding/onboarding_view.dart' as _i12;
+import 'package:bible_ai/ui/views/profile/profile_view.dart' as _i20;
+import 'package:bible_ai/ui/views/profile_management/about_the_app/about_the_app_view.dart'
+    as _i6;
+import 'package:bible_ai/ui/views/profile_management/account_settings/account_settings_view.dart'
+    as _i2;
+import 'package:bible_ai/ui/views/profile_management/app_preferences/app_preferences_view.dart'
+    as _i3;
+import 'package:bible_ai/ui/views/profile_management/bible_version_profile/bible_version_profile_view.dart'
+    as _i7;
+import 'package:bible_ai/ui/views/profile_management/help_and_support/help_and_support_view.dart'
+    as _i5;
+import 'package:bible_ai/ui/views/profile_management/notifications/notifications_view.dart'
+    as _i8;
+import 'package:bible_ai/ui/views/profile_management/subscription_and_payments/subscription_and_payments_view.dart'
+    as _i4;
+import 'package:bible_ai/ui/views/startup/startup_view.dart' as _i10;
+import 'package:flutter/material.dart' as _i25;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i19;
+import 'package:stacked_services/stacked_services.dart' as _i26;
 
 class Routes {
+  static const accountSettingsView = '/account-settings-view';
+
+  static const appPreferencesView = '/app-preferences-view';
+
+  static const subscriptionAndPaymentsView = '/subscription-and-payments-view';
+
+  static const helpAndSupportView = '/help-and-support-view';
+
+  static const aboutTheAppView = '/about-the-app-view';
+
+  static const bibleVersionProfileView = '/bible-version-profile-view';
+
+  static const notificationsView = '/notifications-view';
+
   static const homeView = '/home-view';
 
   static const startupView = '/startup-view';
@@ -66,6 +94,13 @@ class Routes {
   static const verseSelectionView = '/verse-selection-view';
 
   static const all = <String>{
+    accountSettingsView,
+    appPreferencesView,
+    subscriptionAndPaymentsView,
+    helpAndSupportView,
+    aboutTheAppView,
+    bibleVersionProfileView,
+    notificationsView,
     homeView,
     startupView,
     loginView,
@@ -88,154 +123,224 @@ class Routes {
 class StackedRouter extends _i1.RouterBase {
   final _routes = <_i1.RouteDef>[
     _i1.RouteDef(
+      Routes.accountSettingsView,
+      page: _i2.AccountSettingsView,
+    ),
+    _i1.RouteDef(
+      Routes.appPreferencesView,
+      page: _i3.AppPreferencesView,
+    ),
+    _i1.RouteDef(
+      Routes.subscriptionAndPaymentsView,
+      page: _i4.SubscriptionAndPaymentsView,
+    ),
+    _i1.RouteDef(
+      Routes.helpAndSupportView,
+      page: _i5.HelpAndSupportView,
+    ),
+    _i1.RouteDef(
+      Routes.aboutTheAppView,
+      page: _i6.AboutTheAppView,
+    ),
+    _i1.RouteDef(
+      Routes.bibleVersionProfileView,
+      page: _i7.BibleVersionProfileView,
+    ),
+    _i1.RouteDef(
+      Routes.notificationsView,
+      page: _i8.NotificationsView,
+    ),
+    _i1.RouteDef(
       Routes.homeView,
-      page: _i2.HomeView,
+      page: _i9.HomeView,
     ),
     _i1.RouteDef(
       Routes.startupView,
-      page: _i3.StartupView,
+      page: _i10.StartupView,
     ),
     _i1.RouteDef(
       Routes.loginView,
-      page: _i4.LoginView,
+      page: _i11.LoginView,
     ),
     _i1.RouteDef(
       Routes.onboardingView,
-      page: _i5.OnboardingView,
+      page: _i12.OnboardingView,
     ),
     _i1.RouteDef(
       Routes.signupView,
-      page: _i6.SignupView,
+      page: _i13.SignupView,
     ),
     _i1.RouteDef(
       Routes.forgotPasswordView,
-      page: _i7.ForgotPasswordView,
+      page: _i14.ForgotPasswordView,
     ),
     _i1.RouteDef(
       Routes.otpView,
-      page: _i8.OtpView,
+      page: _i15.OtpView,
     ),
     _i1.RouteDef(
       Routes.congratulationsView,
-      page: _i9.CongratulationsView,
+      page: _i16.CongratulationsView,
     ),
     _i1.RouteDef(
       Routes.enableNotificationView,
-      page: _i10.EnableNotificationView,
+      page: _i17.EnableNotificationView,
     ),
     _i1.RouteDef(
       Routes.mainScreenView,
-      page: _i11.MainScreenView,
+      page: _i18.MainScreenView,
     ),
     _i1.RouteDef(
       Routes.chatView,
-      page: _i12.ChatView,
+      page: _i19.ChatView,
     ),
     _i1.RouteDef(
       Routes.profileView,
-      page: _i13.ProfileView,
+      page: _i20.ProfileView,
     ),
     _i1.RouteDef(
       Routes.bibleVersionSelectionView,
-      page: _i14.BibleVersionSelectionView,
+      page: _i21.BibleVersionSelectionView,
     ),
     _i1.RouteDef(
       Routes.bookChaptersView,
-      page: _i15.BookChaptersView,
+      page: _i22.BookChaptersView,
     ),
     _i1.RouteDef(
       Routes.bibleReadingView,
-      page: _i16.BibleReadingView,
+      page: _i23.BibleReadingView,
     ),
     _i1.RouteDef(
       Routes.verseSelectionView,
-      page: _i17.VerseSelectionView,
+      page: _i24.VerseSelectionView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
-    _i2.HomeView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i2.HomeView(),
+    _i2.AccountSettingsView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i2.AccountSettingsView(),
         settings: data,
       );
     },
-    _i3.StartupView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i3.StartupView(),
+    _i3.AppPreferencesView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i3.AppPreferencesView(),
         settings: data,
       );
     },
-    _i4.LoginView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i4.LoginView(),
+    _i4.SubscriptionAndPaymentsView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i4.SubscriptionAndPaymentsView(),
         settings: data,
       );
     },
-    _i5.OnboardingView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.OnboardingView(),
+    _i5.HelpAndSupportView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i5.HelpAndSupportView(),
         settings: data,
       );
     },
-    _i6.SignupView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.SignupView(),
+    _i6.AboutTheAppView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i6.AboutTheAppView(),
         settings: data,
       );
     },
-    _i7.ForgotPasswordView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i7.ForgotPasswordView(),
+    _i7.BibleVersionProfileView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.BibleVersionProfileView(),
         settings: data,
       );
     },
-    _i8.OtpView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.OtpView(),
+    _i8.NotificationsView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i8.NotificationsView(),
         settings: data,
       );
     },
-    _i9.CongratulationsView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i9.CongratulationsView(),
+    _i9.HomeView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i9.HomeView(),
         settings: data,
       );
     },
-    _i10.EnableNotificationView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.EnableNotificationView(),
+    _i10.StartupView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.StartupView(),
         settings: data,
       );
     },
-    _i11.MainScreenView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.MainScreenView(),
+    _i11.LoginView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.LoginView(),
         settings: data,
       );
     },
-    _i12.ChatView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i12.ChatView(),
+    _i12.OnboardingView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i12.OnboardingView(),
         settings: data,
       );
     },
-    _i13.ProfileView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i13.ProfileView(),
+    _i13.SignupView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.SignupView(),
         settings: data,
       );
     },
-    _i14.BibleVersionSelectionView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i14.BibleVersionSelectionView(),
+    _i14.ForgotPasswordView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i14.ForgotPasswordView(),
         settings: data,
       );
     },
-    _i15.BookChaptersView: (data) {
+    _i15.OtpView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i15.OtpView(),
+        settings: data,
+      );
+    },
+    _i16.CongratulationsView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i16.CongratulationsView(),
+        settings: data,
+      );
+    },
+    _i17.EnableNotificationView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i17.EnableNotificationView(),
+        settings: data,
+      );
+    },
+    _i18.MainScreenView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i18.MainScreenView(),
+        settings: data,
+      );
+    },
+    _i19.ChatView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i19.ChatView(),
+        settings: data,
+      );
+    },
+    _i20.ProfileView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i20.ProfileView(),
+        settings: data,
+      );
+    },
+    _i21.BibleVersionSelectionView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i21.BibleVersionSelectionView(),
+        settings: data,
+      );
+    },
+    _i22.BookChaptersView: (data) {
       final args = data.getArgs<BookChaptersViewArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => _i15.BookChaptersView(
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => _i22.BookChaptersView(
             key: args.key,
             version: args.version,
             book: args.book,
@@ -246,10 +351,10 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i16.BibleReadingView: (data) {
+    _i23.BibleReadingView: (data) {
       final args = data.getArgs<BibleReadingViewArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => _i16.BibleReadingView(
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => _i23.BibleReadingView(
             key: args.key,
             version: args.version,
             book: args.book,
@@ -258,9 +363,9 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i17.VerseSelectionView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i17.VerseSelectionView(),
+    _i24.VerseSelectionView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i24.VerseSelectionView(),
         settings: data,
       );
     },
@@ -284,7 +389,7 @@ class BookChaptersViewArguments {
     required this.onChapterTap,
   });
 
-  final _i18.Key? key;
+  final _i25.Key? key;
 
   final String version;
 
@@ -336,7 +441,7 @@ class BibleReadingViewArguments {
     required this.title,
   });
 
-  final _i18.Key? key;
+  final _i25.Key? key;
 
   final String version;
 
@@ -371,7 +476,105 @@ class BibleReadingViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i19.NavigationService {
+extension NavigatorStateExtension on _i26.NavigationService {
+  Future<dynamic> navigateToAccountSettingsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.accountSettingsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAppPreferencesView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.appPreferencesView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSubscriptionAndPaymentsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.subscriptionAndPaymentsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToHelpAndSupportView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.helpAndSupportView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAboutTheAppView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.aboutTheAppView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToBibleVersionProfileView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.bibleVersionProfileView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNotificationsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.notificationsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -555,7 +758,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> navigateToBookChaptersView({
-    _i18.Key? key,
+    _i25.Key? key,
     required String version,
     required String book,
     required int totalChapters,
@@ -584,7 +787,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> navigateToBibleReadingView({
-    _i18.Key? key,
+    _i25.Key? key,
     required String version,
     required String book,
     required int chapter,
@@ -616,6 +819,104 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.verseSelectionView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAccountSettingsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.accountSettingsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAppPreferencesView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.appPreferencesView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSubscriptionAndPaymentsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.subscriptionAndPaymentsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithHelpAndSupportView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.helpAndSupportView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAboutTheAppView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.aboutTheAppView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithBibleVersionProfileView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.bibleVersionProfileView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithNotificationsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.notificationsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -805,7 +1106,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> replaceWithBookChaptersView({
-    _i18.Key? key,
+    _i25.Key? key,
     required String version,
     required String book,
     required int totalChapters,
@@ -834,7 +1135,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> replaceWithBibleReadingView({
-    _i18.Key? key,
+    _i25.Key? key,
     required String version,
     required String book,
     required int chapter,

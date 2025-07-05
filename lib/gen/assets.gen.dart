@@ -29,6 +29,7 @@ class Assets {
   static const AssetGenImage adjustmentsVertical =
       AssetGenImage('assets/adjustments-vertical.png');
   static const AssetGenImage apple = AssetGenImage('assets/apple.png');
+  static const AssetGenImage ballon = AssetGenImage('assets/ballon.gif');
   static const AssetGenImage bell = AssetGenImage('assets/bell.gif');
   static const AssetGenImage bible = AssetGenImage('assets/bible.png');
   static const AssetGenImage bibleMinimal =
@@ -41,6 +42,8 @@ class Assets {
   static const AssetGenImage bookmark = AssetGenImage('assets/bookmark.png');
   static const SvgGenImage chatBubbleLeftRight =
       SvgGenImage('assets/chat-bubble-left-right.svg');
+  static const AssetGenImage checkCircle =
+      AssetGenImage('assets/check-circle.png');
   static const AssetGenImage congratulations =
       AssetGenImage('assets/congratulations.png');
   static const AssetGenImage creditCard =
@@ -71,6 +74,7 @@ class Assets {
         abraham,
         adjustmentsVertical,
         apple,
+        ballon,
         bell,
         bible,
         bibleMinimal,
@@ -79,6 +83,7 @@ class Assets {
         bookOpen,
         bookmark,
         chatBubbleLeftRight,
+        checkCircle,
         congratulations,
         creditCard,
         google,

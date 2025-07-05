@@ -30,7 +30,12 @@ class MainScreenView extends StackedView<MainScreenViewModel> {
               builder: (_) => const BibleVersionSelectionView(),
             ),
           ),
-          const ProfileView(),
+          Navigator(
+            onGenerateRoute: (settings) => MaterialPageRoute(
+              builder: (_) => const ProfileView(),
+            ),
+          ),
+          // const ProfileView(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(

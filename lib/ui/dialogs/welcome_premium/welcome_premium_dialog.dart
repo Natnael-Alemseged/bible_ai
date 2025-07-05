@@ -1,13 +1,11 @@
 import 'package:bible_ai/core/constants/app_colors.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../../core/constants/ui_helpers.dart';
+import '../../../core/widgets/app_button.dart';
+import '../../../gen/assets.gen.dart';
 import 'welcome_premium_dialog_model.dart';
-
-const double _graphicSize = 60;
 
 class WelcomePremiumDialog extends StackedView<WelcomePremiumDialogModel> {
   final DialogRequest request;
@@ -21,82 +19,64 @@ class WelcomePremiumDialog extends StackedView<WelcomePremiumDialogModel> {
 
   @override
   Widget builder(
-    BuildContext context,
-    WelcomePremiumDialogModel viewModel,
-    Widget? child,
-  ) {
+      BuildContext context,
+      WelcomePremiumDialogModel viewModel,
+      Widget? child,
+      ) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       backgroundColor: Colors.white,
+      insetPadding: const EdgeInsets.all(24),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        request.title ?? 'Hello Stacked Dialog!!',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      if (request.description != null) ...[
-                        verticalSpaceTiny,
-                        Text(
-                          request.description!,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: greyColor,
-                          ),
-                          maxLines: 3,
-                          softWrap: true,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-                Container(
-                  width: _graphicSize,
-                  height: _graphicSize,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFF6E7B0),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(_graphicSize / 2),
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text('⭐️', style: TextStyle(fontSize: 30)),
-                )
-              ],
+            // 🎈 Animated GIF Balloon
+            Image.asset(
+              Assets.ballon.path,
+              width: 120,
+              height: 120,
+              fit: BoxFit.contain,
             ),
-            verticalSpaceMedium,
-            GestureDetector(
-              onTap: () => completer(DialogResponse(confirmed: true)),
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Text(
-                  'Got it',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
+            const SizedBox(height: 24),
+
+            // Heading
+            const Text(
+              'Welcome to',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
               ),
+            ),
+            const SizedBox(height: 6),
+            const Text(
+              'Bible Ai Premium!',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Description
+            const Text(
+              'Congratulations, ATHNI! You now have full access to advanced tracking, exclusive content, and 24/7 support. Let’s unlock your potential!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.5,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 28),
+
+            // 🟡 Continue Button (custom)
+            AppButton(
+              text: 'Continue',
+              onPressed: () => completer(DialogResponse(confirmed: true)),
             ),
           ],
         ),

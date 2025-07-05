@@ -44,10 +44,19 @@ class ChatView extends StackedView<ChatViewModel> {
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
+                          horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
-                        color: Colors.amber.shade100,
-                        borderRadius: BorderRadius.circular(20),
+                        color: viewModel.selectedCharacter != null
+                            ? Colors.grey.shade100
+                            : Colors.amber.shade100,
+                        border: viewModel.selectedCharacter != null
+                            ? Border.all(
+                                color: Colors
+                                    .amber, // You can use another color if needed
+                                width: 1.5,
+                              )
+                            : null,
+                        borderRadius: BorderRadius.circular(24),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -97,34 +106,34 @@ class ChatView extends StackedView<ChatViewModel> {
                   opacity: viewModel.showCharacterSelector ? 1.0 : 0.0,
                   child: viewModel.showCharacterSelector
                       ? SizedBox(
-                    height: 90,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: viewModel.characters.length,
-                      separatorBuilder: (_, __) =>
-                      const SizedBox(width: 16),
-                      itemBuilder: (context, index) {
-                        final char = viewModel.characters[index];
-                        return GestureDetector(
-                          onTap: () => viewModel.selectCharacter(char),
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                radius: 28,
-                                backgroundImage:
-                                AssetImage(char['image']!),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                char['name']!,
-                                style: const TextStyle(fontSize: 12),
-                              ),
-                            ],
+                          height: 90,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: viewModel.characters.length,
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(width: 16),
+                            itemBuilder: (context, index) {
+                              final char = viewModel.characters[index];
+                              return GestureDetector(
+                                onTap: () => viewModel.selectCharacter(char),
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 28,
+                                      backgroundImage:
+                                          AssetImage(char['image']!),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      char['name']!,
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                  )
+                        )
                       : const SizedBox.shrink(),
                 ),
               ),
@@ -166,7 +175,7 @@ class ChatView extends StackedView<ChatViewModel> {
                     Expanded(
                       child: TextField(
                         controller: viewModel.inputController,
-                        onChanged: (_) => viewModel.notifyListeners(),
+                        // onChanged: (_) => viewModel.notifyListeners(),
                         decoration: const InputDecoration(
                           hintText: 'Ask Bible ai',
                           border: InputBorder.none,
@@ -186,9 +195,9 @@ class ChatView extends StackedView<ChatViewModel> {
                             color: whiteColor,
                           ),
                           onPressed:
-                          viewModel.inputController.text.trim().isNotEmpty
-                              ? viewModel.onSendPressed
-                              : viewModel.onMicPressed,
+                              viewModel.inputController.text.trim().isNotEmpty
+                                  ? viewModel.onSendPressed
+                                  : viewModel.onMicPressed,
                         ),
                       ),
                     ),
@@ -206,7 +215,11 @@ class ChatView extends StackedView<ChatViewModel> {
 
   Widget _buildSuggestionChip(String text, ChatViewModel viewModel) {
     return GestureDetector(
-      onTap: () => viewModel.handlePrompt(text),
+      onTap: () {
+        viewModel.inputController.text = text;
+        viewModel
+            .notifyListeners(); // Optional since you already have a listener
+      },
       child: Container(
         constraints: const BoxConstraints(maxWidth: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
